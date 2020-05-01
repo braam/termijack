@@ -74,7 +74,8 @@ Hijack stdin, stdout, and stderr. Also, reflect them back to the target process:
 
 Continuous scan running processes and start termijack once it discovered our process of interest:
 
-* ```#!/bin/bash
+* ```
+```#!/bin/bash
 counter=2
 openssl_process_id=0
 while [ $counter -gt 1 ]
